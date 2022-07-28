@@ -102,17 +102,20 @@ on("chat:message", function(orig_msg) {
 				charName = charname;
 			});
 			damageType = findRollResult(msg, 'dmg1type', 1);
-			damageBase = findRollResult(msg, 'dmg1') + findRollResult(msg, 'dmg2') + findRollResult(msg, 'hldmg') + findRollResult(msg, 'globaldamage'); 
-			damageCrit = findRollResult(msg, 'crit1') + findRollResult(msg, 'crit2') + findRollResult(msg, 'hldmgcrit') + findRollResult(msg, 'globaldamagecrit');
+			damageBase = findRollResult(msg, 'dmg1') + findRollResult(msg, 'dmg2'); 
+			damageMod = findRollResult(msg, 'hldmg') + findRollResult(msg, 'globaldamage') + findRollResult(msg, 'crit1') + findRollResult(msg, 'crit2') + findRollResult(msg, 'hldmgcrit') + findRollResult(msg, 'globaldamagecrit');
 			
 			advantage = findRollResult(msg, 'advantage');
 			normal = findRollResult(msg, 'normal');
 			disadvantage = findRollResult(msg, 'disadvantage');
 			always = findRollResult(msg, 'always');
 
-			damageTotal = damageBase + damageCrit;
+			damageTotal = damageBase + damageMod;
 
-			sendChat(msg.who, '<h2 style=\"outline:double; text-align:center; max-width:185px; color:black; background-color:white; font-size:22px\">' + damageTotal + '</h2>');
+			if (damageMod != 0)
+			{
+				sendChat(msg.who, '<h2 style=\"outline:double; text-align:center; max-width:185px; color:black; background-color:white; font-size:22px\">' + damageTotal + '</h2>');
+			}
 		}
     }
 });
