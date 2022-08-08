@@ -58,7 +58,11 @@ on("chat:message", function(orig_msg) {
 			if (globalAttack != 0 || global != 0)
 			{
 				// If it's a single roll, display only the sum for r1.
-				if (normal == 1)
+				if (isNaN(rollTotal1) || isNaN(rollTotal2))
+				{
+					
+				}
+				else if (normal == 1)
 				{
 					sendChat(msg.who, '<h2 style=\"outline:double; text-align:center; max-width:185px; color:black; background-color:white; font-size:22px\">' + rollTotal1 + '</h2>');
 				}
